@@ -14,6 +14,11 @@
 
 <button onclick="salvar()">Salvar</button>
 
+<hr>
+
+<h2>Licitações cadastradas</h2>
+<div id="lista"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -43,8 +48,42 @@ async function salvar() {
     alert("Erro: " + error.message);
   } else {
     alert("Salvo com sucesso!");
+    document.getElementById('codigo').value = "";
+    document.getElementById('orgao').value = "";
+    document.getElementById('produto').value = "";
+    document.getElementById('valor').value = "";
+    listar();
   }
 }
+
+async function listar() {
+  const { data, error } = await supabaseClient
+    .from('licitacoes')
+    .select('*')
+    .order('id', { ascending: false });
+
+  if (error) {
+    document.getElementById('lista').innerHTML = "Erro ao carregar: " + error.message;
+    return;
+  }
+
+  let html = "";
+
+  data.forEach(item => {
+    html += `
+      <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+        <strong>${item.codigo}</strong><br>
+        Órgão: ${item.orgao}<br>
+        Produto: ${item.produto}<br>
+        Valor: R$ ${item.valor_estimado}
+      </div>
+    `;
+  });
+
+  document.getElementById('lista').innerHTML = html;
+}
+
+listar();
 </script>
 
 </body>
