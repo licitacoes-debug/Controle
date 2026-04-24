@@ -69,7 +69,18 @@ async function listar() {
 
   let html = "";
 
-  data.forEach(item => {
+ data.forEach(item => {
+  html += `
+    <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+      <strong>${item.codigo}</strong><br>
+      Órgão: ${item.orgao}<br>
+      Produto: ${item.produto}<br>
+      Valor: R$ ${item.valor_estimado}<br><br>
+
+      <button onclick="excluir(${item.id})">Excluir</button>
+    </div>
+  `;
+});
     html += `
       <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
         <strong>${item.codigo}</strong><br>
@@ -88,3 +99,19 @@ listar();
 
 </body>
 </html>
+async function excluir(id) {
+  const confirmar = confirm("Deseja excluir?");
+  if (!confirmar) return;
+
+  const { error } = await supabaseClient
+    .from('licitacoes')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    alert("Erro ao excluir: " + error.message);
+  } else {
+    alert("Excluído com sucesso!");
+    listar();
+  }
+}
