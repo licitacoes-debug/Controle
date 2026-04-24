@@ -1,9 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LicitaPro</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; }
+    header { background:#111; color:#fff; padding:16px 20px; }
+    .container { padding:20px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px; }
+    .card { background:#fff; border-radius:12px; padding:16px; box-shadow:0 2px 6px rgba(0,0,0,.08); }
+    .title { font-size:14px; color:#666; }
+    .value { font-size:22px; font-weight:bold; margin-top:6px; }
+    .list { margin-top:20px; }
+    .item { background:#fff; padding:12px; border-radius:10px; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+  </style>
 </head>
 <body>
-  <h1>🚀 Sistema de Licitações funcionando!</h1>
+
+<header>
+  <h2>LicitaPro — Sistema de Licitações</h2>
+</header>
+
+<div class="container">
+
+  <div class="grid">
+    <div class="card">
+      <div class="title">Em análise</div>
+      <div class="value">3</div>
+    </div>
+    <div class="card">
+      <div class="title">Propostas enviadas</div>
+      <div class="value">2</div>
+    </div>
+    <div class="card">
+      <div class="title">Ganhas</div>
+      <div class="value">1</div>
+    </div>
+    <div class="card">
+      <div class="title">Pagamentos pendentes</div>
+      <div class="value">2</div>
+    </div>
+  </div>
+
+  <div class="list">
+    <h3>Licitações recentes</h3>
+
+    <div class="item">
+      PE 012/2026 — Secretaria de Saúde  
+      <br>Status: Em análise
+    </div>
+
+    <div class="item">
+      PE 018/2026 — Fundo Municipal  
+      <br>Status: Proposta enviada
+    </div>
+
+    <div class="item">
+      DL 044/2026 — Hospital Municipal  
+      <br>Status: Ganha
+    </div>
+
+  </div>
+
+</div>
+
 </body>
 </html>
