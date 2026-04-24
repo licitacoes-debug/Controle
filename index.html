@@ -69,24 +69,14 @@ async function listar() {
 
   let html = "";
 
- data.forEach(item => {
-  html += `
-    <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
-      <strong>${item.codigo}</strong><br>
-      Órgão: ${item.orgao}<br>
-      Produto: ${item.produto}<br>
-      Valor: R$ ${item.valor_estimado}<br><br>
-
-      <button onclick="excluir(${item.id})">Excluir</button>
-    </div>
-  `;
-});
+  data.forEach(item => {
     html += `
       <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
         <strong>${item.codigo}</strong><br>
         Órgão: ${item.orgao}<br>
         Produto: ${item.produto}<br>
-        Valor: R$ ${item.valor_estimado}
+        Valor: R$ ${item.valor_estimado}<br><br>
+        <button onclick="excluir(${item.id})">Excluir</button>
       </div>
     `;
   });
@@ -94,11 +84,6 @@ async function listar() {
   document.getElementById('lista').innerHTML = html;
 }
 
-listar();
-</script>
-
-</body>
-</html>
 async function excluir(id) {
   const confirmar = confirm("Deseja excluir?");
   if (!confirmar) return;
@@ -115,3 +100,9 @@ async function excluir(id) {
     listar();
   }
 }
+
+listar();
+</script>
+
+</body>
+</html>
